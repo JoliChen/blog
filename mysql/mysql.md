@@ -1,13 +1,43 @@
 ##Install
-###macosx
-	mysql8.0直接使用brew安装。mysql8.0以下推荐直接从官网下载安装包安装。
 	安装包下载地址：https://dev.mysql.com/downloads/mysql/
+	挑选你需要的 MySQL Community Server 版本及对应的平台
+	macosx
+		配置环境变量
+		export PATH="/usr/local/mysql/bin:$PATH"
+		export PATH="/usr/local/mysql/support-files:$PATH"
+	windows
+		??
+	<!--验证安装-->
+	mysqladmin --version
+	*mysqladmin  Ver 8.42 Distrib 5.7.29, for macos10.14 on x86_64*
+*在macosx系统下mysql8.0以下推荐从官网下载安装包，mysql8.0及以上版本推荐使用brew安装。*
+
+##服务管理
+*  sudo mysql.server start
+*  sudo mysql.server stop
+*  sudo mysql.server restart
+*  sudo mysql.server status
+
+#####其他的管理方式
+	安装包安装：苹果系统偏好设置 -> 服务栏 -> Mysql -> Stop MySql Server
+	brew安装： brew services run mysql
+
+##登录服务
+	mysql -h {host} -u {user} -p {password}
+	-h 指定mysql服务的主机名，登录本机（localhost/127.0.0.1）可以省略此参数。
+	-u 登录的用户名
+	-p 使用密码登录，如果登录密码为空可以省略此参数
+`mysql -u root -p` 登录本机服务
+
+##用户设置
+	
 
 ##FQA
 ###Access denied for user 'root'@'localhost' (using password: YES)
 	原因：连接数据库密码错误
 	第一步：关闭mysql
-		苹果->系统偏好设置->点击服务栏(Mysql)->关闭mysql服务 或者 在终端输入mysql.server stop
+		苹果->系统偏好设置->点击服务栏(Mysql)->关闭mysql服务 
+		或者在终端输入: brew services stop mysql
 	第二步： 重置密码
 		1、进入mysql命令行目录
 			cd /usr/local/mysql/bin/
@@ -15,7 +45,7 @@
 			sudo su
 		3、禁止mysql验证功能，mysql会自动重启，系统偏好中的mysql服务状态会变成running
 			./mysqld_safe --skip-grant-tables &
-		4、连接mysql
+		4、默认用户登录mysql
 			./mysql
 		5、刷新权限（这是mysql语句别忘记输入结尾分号）
 			flush privileges;

@@ -8,7 +8,7 @@
 		pomelo init
 		... select 2 for socket.io
 	3、安装依赖包
-		sh npm-install.sh
+		~sh npm-install.sh~
 		**./web-server: No such file or directory**
 		**正确做法**
 		cd ./game-server
