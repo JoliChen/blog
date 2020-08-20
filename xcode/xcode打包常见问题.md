@@ -15,4 +15,7 @@
 	第五步，删除i386和x86_64构架
 		lipo -remove i386 ${xxx}.framework/xxx -o ${xxx}.framework/xxx
 		lipo -remove x86_64 ${xxx}.framework/xxx -o ${xxx}.framework/xxx
+		
+##malloc.h not found
+	#include <malloc/malloc.h>
 	
